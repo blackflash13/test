@@ -4,20 +4,24 @@ const ApiError = require("../exceptions/api-error");
 
 class TransactionsService {
 
-    async getTransactions(page, perPage, type, value) {
+    async getTransactions(page, limit, type, value) {
         page = Math.max(0, page)
         const totalCount = await TransactionsModel.find({[type]: value}).count();
         if (!totalCount) throw ApiError.NotFound(`${type}: ${value} not found! Check filter, value and try again!`)
 
-        const pagesCount = Page.calculatePagesCount(perPage, totalCount);
+        const pagesCount = Page.calculatePagesCount(limit, totalCount);
+        console.log(pagesCount)
         if (pagesCount < page) throw ApiError.PageNumberGreater()
 
-        let transactions = await TransactionsModel.find({[type]: value}).limit(perPage).skip((page - 1) * perPage);
+        let transactions = await TransactionsModel.find({[type]: value}).limit(limit).skip((page - 1) * limit);
 
 
         return {
-            txs: transactions,
-            pagesCount: pagesCount
+            result: transactions,
+            page: page,
+            limit: limit,
+            totalRows: totalCount,
+            totalPage: pagesCount
         }
     }
 }

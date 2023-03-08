@@ -1,6 +1,6 @@
 class Page {
     calculatePagesCount = (pageSize, totalCount) => {
-        return totalCount < pageSize ? 0 : Math.ceil(totalCount / pageSize);
+        return totalCount < pageSize ? 1 : Math.ceil(totalCount / pageSize);
     };
 }
 

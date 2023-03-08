@@ -4,13 +4,13 @@ const ApiError = require("../exceptions/api-error");
 class TranscationController {
     async GetTransactions(req, res, next) {
         try {
-            const {page, perpage, type, value} = req.query;
+            const {page, limit, type, value} = req.query;
 
-            if (page < 1 || perpage < 1) return next(ApiError.BadRequest("Page and perpage value must be greater than 1", errors.array()));
+            if (page < 1 || limit < 1) return next(ApiError.BadRequest("Page and limit value must be greater than 1"));
 
-            if (!type || !value) return next(ApiError.BadRequest("Filter must have type and value"));
+            if (type && !value || !type && value) return next(ApiError.BadRequest("Filter must have type and value"));
 
-            const users = await TransationService.getTransactions(page, perpage, type, value);
+            const users = await TransationService.getTransactions(page, limit, type, value);
 
             return res.json(users);
         } catch (e) {
