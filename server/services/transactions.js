@@ -4,15 +4,14 @@ const ApiError = require("../exceptions/api-error");
 
 class TransactionsService {
 
-    async getTransactions(page, perPage) {
-        // perPage = 20;
+    async getTransactions(page, perPage, type, value) {
         page = Math.max(0, page)
-
-        const totalCount = await TransactionsModel.find().count();
+        const totalCount = await TransactionsModel.find({[type]: value}).count();
         const pagesCount = Page.calculatePagesCount(perPage, totalCount);
+
         if (pagesCount < page) throw ApiError.PageNumberGreater()
 
-        const transactions = await TransactionsModel.find().limit(perPage)/*.skip(perPage * page)*/.skip((page - 1) * perPage);
+        let transactions = await TransactionsModel.find({[type]: value}).limit(perPage).skip((page - 1) * perPage);;
 
         return {
             txs: transactions,

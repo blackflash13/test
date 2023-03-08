@@ -34,8 +34,6 @@ class Transactions {
                         to: tx.to,
                         value: this.fromWeiToEth(parseInt(tx.value, 16)),
                         confirmations: latestBlockNumber - parseInt(tx.blockNumber, 16) + 1,
-                        senderAddress: tx.from,
-                        recepientAddress: tx.to,
                         fee: this.calculateFee(tx.gasPrice, tx.gas),
                         time: parseInt(block.timestamp, 16) * 1000
                     };

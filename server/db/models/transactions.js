@@ -22,14 +22,6 @@ const transactionsSchema = new Schema({
         required: true,
         index: true
     },
-    senderAddress: {
-        type: String,
-        required: true,
-    },
-    recepientAddress: {
-        type: String,
-        required: true,
-    },
     fee: {
         type: Number,
         required: true,
