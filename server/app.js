@@ -39,7 +39,7 @@ connectDb()
                 console.log(`Example app listening at http://localhost:${listener.address().port}`);
             });
         }
-        // await getTransactionsFromBlocks();
+        await getTransactionsFromBlocks();
     });
 
 module.exports = app;

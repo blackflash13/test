@@ -14,6 +14,7 @@ class Transactions {
             const blockNumbers = [];
 
             if (!isExist) {
+                console.log("Will initialize 1000 latest block with transactions.")
                 for (let i = 0; i <= 1/*1000*/; i++) {
                     const blockNumber = latestBlockNumber - i;
                     if (blockNumber < 0) {
