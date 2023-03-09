@@ -39,7 +39,6 @@ class Transactions {
                         fee: this.calculateFee(tx.gasPrice, tx.gas),
                         time: parseInt(block.timestamp, 16) * 1000
                     };
-                    await this.sleep(1000000);
                     await this.saveTx(transaction);
 
                     const existingTransaction = await TransactionsModel.findOne({txHash: tx.hash});
@@ -76,15 +75,12 @@ class Transactions {
     };
 
     fromWeiToEth(valueInWei, tx) {
-
         const divider = Math.pow(10, 18);
         const valueInEth = valueInWei / divider;
         return valueInEth;
     }
 
     calculateFee(gasPrice, gas) {
-        gasPrice = this.fromWeiToEth(parseInt(gasPrice, 16));
-        gas = this.fromWeiToEth(parseInt(gas, 16));
         return this.fromWeiToEth(gasPrice * gas);
     }
 

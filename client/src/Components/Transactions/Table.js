@@ -1,6 +1,5 @@
 import React from 'react';
-import {Container, Table} from 'react-bootstrap';
-
+import moment from 'moment'
 
 const TransactionsTable = ({data}) => {
     return (
@@ -27,8 +26,7 @@ const TransactionsTable = ({data}) => {
                     <td>{tx.from.substring(0, 13) + '...'}</td>
                     <td>{tx.to.substring(0, 13) + '...'}</td>
                     <td>{tx.confirmations}</td>
-                    {/*<td>{tx.time}</td>*/}
-                    <td>Mar-17-2021</td>
+                    <td>{moment(tx.time).format("MMM-DD-YYYY")}</td>
                     <td>{tx.value}</td>
                     <td>{tx.fee}</td>
                 </tr>

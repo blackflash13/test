@@ -27,7 +27,6 @@ const Transactions = () => {
             setRows(response.data.totalRows);
             setMsg("");
         }).catch((e) => {
-            console.log(e.response.data.message)
             setMsg(e.response.data.message)
             setTransactions([]);
         });
@@ -58,10 +57,8 @@ const Transactions = () => {
                                         type="text"
                                         className="input custom_input"
                                         value={query}
-                                        onChange={(e) => {
-                                            console.log(e.target.value)
-                                            setQuery(e.target.value)
-                                        }}
+                                        onChange={(e) => setQuery(e.target.value)
+                                        }
                                         placeholder="Search..."
                                     />
                                 </div>
