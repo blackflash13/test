@@ -9,9 +9,8 @@ $header-height: 72px;
 $main-top-margin: 60px;
 $zero-border: 0px;
 $table-even-row-bg: #F1F1F1;
-$table-add-row-bg: #FBFBFB;
+$table-odd-row-bg: #FBFBFB;
 $footer-bg-color: #1C3B55;
-
 
 @mixin bg-color {
   background-color: $site-color;
@@ -67,6 +66,9 @@ select option {
   background-color: $site-color;
 }
 
+.custom_select {
+  width: 100%;
+}
 
 .custom_input, .custom_input:active, .custom_input:focus, .select .custom_select, .select .custom_select:active, .select .custom_select:focus {
   @include reset-border;
@@ -97,7 +99,7 @@ select option {
 }
 
 .table.is-striped tbody tr:not(.is-selected):nth-child(odd) {
-  background-color: $table-add-row-bg;
+  background-color: $table-odd-row-bg;
 }
 
 .table tbody a {

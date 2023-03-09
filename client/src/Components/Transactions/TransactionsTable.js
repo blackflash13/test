@@ -14,11 +14,10 @@ const Transactions = () => {
     const [query, setQuery] = useState("");
     const [msg, setMsg] = useState("");
     const [searchType, setSearchType] = useState('txHash');
-    const [keyword, setKeyword] = useState("");
 
     useEffect(() => {
         getTransactions(searchType, query);
-    }, [page, keyword]);
+    }, [page]);
 
     const getTransactions = (searchType, query) => {
         ApiService.sendRequestToAPI(page, limit, searchType, query).then((response) => {
@@ -52,9 +51,9 @@ const Transactions = () => {
             <div className="columns is-variable is-mobile">
                 <div className="column is-5-widescreen is-8-tablet is-12-mobile">
                     <div className="columns is-gapless is-mobile is-align-items-center">
-                        <div className="column is-11-widescreen is-9-tablet is-9-mobile">
+                        <div className="column is-12-widescreen is-9-tablet is-9-mobile">
                             <div className="columns is-gapless search_elements is-mobile">
-                                <div className="column is-6-widescreen is-5-mobile">
+                                <div className="column is-6-widescreen is-6-mobile">
                                     <input
                                         type="text"
                                         className="input custom_input"
@@ -67,7 +66,7 @@ const Transactions = () => {
                                     />
                                 </div>
 
-                                <div className="select column is-6-widescreen is-5-mobile">
+                                <div className="select column is-6-widescreen is-6-mobile">
                                     <select className=" custom_select" id="search-type" value={searchType}
                                             onChange={handleSearchTypeChange}>
                                         <option value="txHash">Transaction ID</option>
@@ -118,7 +117,7 @@ const Transactions = () => {
                             nextLinkClassName={"pagination-next"}
                             activeLinkClassName={"pagination-link is-current"}
                             disabledLinkClassName={"pagination-link is-disabled"}
-                            breakLabel="..."
+                            breakLabel=""
                             pageCount={Math.min(pages)}
                             marginPagesDisplayed={0}
                             pageRangeDisplayed={5}

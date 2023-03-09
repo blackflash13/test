@@ -28,16 +28,18 @@ class Transactions {
                 const response = await axios.get(apiUrl + blockNumber.toString(16));
                 const block = response.data.result;
                 for (const tx of block.transactions) {
+                    console.log(tx.hash)
                     const transaction = {
                         txHash: tx.hash,
                         blockNumber: parseInt(tx.blockNumber, 16),
                         from: tx.from,
                         to: tx.to,
-                        value: this.fromWeiToEth(parseInt(tx.value, 16)),
+                        value: this.fromWeiToEth(parseInt(tx.value, 16), tx.hash),
                         confirmations: latestBlockNumber - parseInt(tx.blockNumber, 16) + 1,
                         fee: this.calculateFee(tx.gasPrice, tx.gas),
                         time: parseInt(block.timestamp, 16) * 1000
                     };
+                    await this.sleep(1000000);
                     await this.saveTx(transaction);
 
                     const existingTransaction = await TransactionsModel.findOne({txHash: tx.hash});
@@ -73,15 +75,16 @@ class Transactions {
         }
     };
 
-    fromWeiToEth(valueInWei) {
+    fromWeiToEth(valueInWei, tx) {
+
         const divider = Math.pow(10, 18);
         const valueInEth = valueInWei / divider;
         return valueInEth;
     }
 
     calculateFee(gasPrice, gas) {
-        gasPrice = parseInt(gasPrice, 16);
-        gas = parseInt(gas, 16);
+        gasPrice = this.fromWeiToEth(parseInt(gasPrice, 16));
+        gas = this.fromWeiToEth(parseInt(gas, 16));
         return this.fromWeiToEth(gasPrice * gas);
     }
 
