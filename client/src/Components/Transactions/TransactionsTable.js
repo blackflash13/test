@@ -89,7 +89,8 @@ const Transactions = () => {
                 </div>
             </div>
 
-            {msg ? <p className="has-text-centered has-text-danger">{msg}</p> :
+            {msg ?
+                <div className="notification is-danger">{msg}</div> :
                 <div>
                     <div className="table-responsive">
                         {transactions.length > 0 ? (<TransactionsTable data={transactions}/>) : (
