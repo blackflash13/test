@@ -8,8 +8,6 @@ const errorMiddleware = require("./middlewares/error-middleware");
 const path = require("path");
 const {getTransactionsFromBlocks} = require("./systems/transactions")
 
-console.log(process.env.PORT)
-
 app.use(express.json({limit: "50mb"}), cookieParser());
 app.use(cors({
     // origin: process.env.HOST,
