@@ -101,7 +101,7 @@ const Transactions = () => {
 
                         <nav
                             className="pagination is-centered"
-                            key={rows}
+                            // key={rows}
                             role="navigation"
                             aria-label="pagination"
                         ><ReactPaginate
