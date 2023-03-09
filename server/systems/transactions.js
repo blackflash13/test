@@ -15,7 +15,7 @@ class Transactions {
 
             if (!isExist) {
                 console.log("Will initialize 1000 latest block with transactions.")
-                for (let i = 0; i <= 1/*1000*/; i++) {
+                for (let i = 0; i <= 1000; i++) {
                     const blockNumber = latestBlockNumber - i;
                     if (blockNumber < 0) {
                         break;
@@ -28,7 +28,6 @@ class Transactions {
                 const response = await axios.get(apiUrl + blockNumber.toString(16));
                 const block = response.data.result;
                 for (const tx of block.transactions) {
-                    console.log(tx.hash)
                     const transaction = {
                         txHash: tx.hash,
                         blockNumber: parseInt(tx.blockNumber, 16),
@@ -45,6 +44,7 @@ class Transactions {
                     if (existingTransaction && existingTransaction.confirmations !== transaction.confirmations) {
                         await this.updTxConfirmation(existingTransaction.txHash, transaction.confirmations);
                     }
+                    await this.sleep(1000);
                 }
             }
         } catch (err) {

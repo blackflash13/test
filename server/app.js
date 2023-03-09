@@ -8,8 +8,7 @@ const errorMiddleware = require("./middlewares/error-middleware");
 const path = require("path");
 const {getTransactionsFromBlocks} = require("./systems/transactions")
 
-
-
+console.log(process.env.PORT)
 
 app.use(express.json({limit: "50mb"}), cookieParser());
 app.use(cors({
@@ -41,7 +40,7 @@ connectDb()
                 console.log(`Example app listening at http://localhost:${listener.address().port}`);
             });
         }
-         await getTransactionsFromBlocks();
+        await getTransactionsFromBlocks();
     });
 
 module.exports = app;
