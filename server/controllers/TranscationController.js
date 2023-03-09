@@ -8,7 +8,7 @@ class TranscationController {
 
             if (page < 1 || limit < 1) return next(ApiError.BadRequest("Page and limit value must be greater than 1"));
 
-            if (type && !value || !type && value) return next(ApiError.BadRequest("Filter must have type and value"));
+            // if (type && !value || !type && value) return next(ApiError.BadRequest("Filter must have type and value"));
 
             const users = await TransationService.getTransactions(page, limit, type, value);
 

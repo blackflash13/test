@@ -14,10 +14,11 @@ const Transactions = () => {
     const [query, setQuery] = useState("");
     const [msg, setMsg] = useState("");
     const [searchType, setSearchType] = useState('txHash');
+    const [keyword, setKeyword] = useState("");
 
     useEffect(() => {
-        getTransactions();
-    }, [page]);
+        getTransactions(searchType, query);
+    }, [page, keyword]);
 
     const getTransactions = (searchType, query) => {
         ApiService.sendRequestToAPI(page, limit, searchType, query).then((response) => {
@@ -39,14 +40,10 @@ const Transactions = () => {
 
     const handleSearchTypeChange = (event) => {
         setSearchType(event.target.value);
-        console.log(searchType)
     };
 
     const handleSearch = async () => {
-        if (query == "") {
-            //підсвітку поля вводу!
-            return;
-        }
+        setPage(1);
         await getTransactions(searchType, query);
     };
 
@@ -63,6 +60,7 @@ const Transactions = () => {
                                         className="input custom_input"
                                         value={query}
                                         onChange={(e) => {
+                                            console.log(e.target.value)
                                             setQuery(e.target.value)
                                         }}
                                         placeholder="Search..."
