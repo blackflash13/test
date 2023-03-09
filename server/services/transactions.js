@@ -10,7 +10,7 @@ class TransactionsService {
         if (!totalCount) throw ApiError.NotFound(`${type}: ${value} not found! Check filter, value and try again!`)
 
         const pagesCount = Page.calculatePagesCount(limit, totalCount);
-        console.log(pagesCount)
+
         if (pagesCount < page) throw ApiError.PageNumberGreater()
 
         let transactions = await TransactionsModel.find({[type]: value}).limit(limit).skip((page - 1) * limit);

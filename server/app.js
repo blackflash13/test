@@ -25,10 +25,12 @@ app.use("/api", router);
 app.use(errorMiddleware);
 
 app.use(express.static(__dirname + '/public'));
-app.use(express.static(__dirname + "../../../client/build"));
+
+app.use(express.static(__dirname + "../../client/build"));
 app.get("*", (_, res) => {
-    res.sendFile(path.join(__dirname + "../../../client/build/index.html"));
+    res.sendFile(path.join(__dirname + "../../client/build/index.html"));
 });
+
 
 connectDb()
     .on("error", (error) => console.log(error.message))

@@ -1,49 +1,126 @@
-$background-color: #f06292;
-$text-color: #f1d3b3;
+$app-font-family: Montserrat;
+$site-color: #3A80BA;
+$text-color: #FFFFFF;
+$text-font-size: 40px;
 $btn-width: 120px;
-$btn-height: 40px;
+$text-weight: 400;
 $block-padding: 60px;
+$header-height: 72px;
+$main-top-margin: 60px;
+$zero-border: 0px;
+$table-even-row-bg: #F1F1F1;
+$table-add-row-bg: #FBFBFB;
+$footer-bg-color: #1C3B55;
 
-.App {
-  text-align: center;
+
+@mixin bg-color {
+  background-color: $site-color;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+@mixin text {
+  color: $text-color;
+  font-weight: $text-weight;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+@mixin font-family {
+  font-family: $app-font-family;
 }
 
-.App-header {
-  background-color: $background-color;
-  min-height: 100vh;
+@mixin reset-border {
+  border: $zero-border;
+
+}
+
+@mixin reset-box-shadow {
+  box-shadow: none;
+}
+
+@mixin custom_border {
+  border: 2px solid #F1F1F1;
+  border-radius: 10px;
+}
+
+*, select, {
+  @include font-family
+}
+
+select option {
+  @include font-family
+}
+
+.header {
+  @include bg-color;
+  @include text;
+
+  font-size: $text-font-size;
+  font-weight: $text-weight;
+  height: $header-height;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+#main {
+  margin-top: $main-top-margin;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.pagination-link.is-current {
+  background-color: $site-color;
 }
 
 
+.custom_input, .custom_input:active, .custom_input:focus, .select .custom_select, .select .custom_select:active, .select .custom_select:focus {
+  @include reset-border;
+  @include reset-box-shadow;
+}
+
+.search_elements {
+  @include custom_border;
+}
+
+.table-responsive, .table {
+  border-radius: 15px;
+}
+
+.table .custom_thead th {
+  @include bg-color;
+  @include text;
+  font-size: 16px;
+}
+
+.table tbody tr td {
+  white-space: nowrap;
+  font-size: 14px;
+}
+
+.table.is-striped tbody tr:not(.is-selected):nth-child(even) {
+  background-color: $table-even-row-bg;
+}
+
+.table.is-striped tbody tr:not(.is-selected):nth-child(odd) {
+  background-color: $table-add-row-bg;
+}
+
+.table tbody a {
+  text-decoration: underline;
+}
+
+.table.is-bordered td, .table.is-bordered th {
+  border: 1px solid #FFFFFF;
+}
+
+.custom_footer {
+  background-color: $footer-bg-color;
+  height: 57px;
+  color: $text-color;
+}
+
+.pagination-previous, .pagination-next {
+  @include reset-border;
+}
+
+.pagination-link.is-disabled {
+  background-color: transparent;
+}
 
 
 

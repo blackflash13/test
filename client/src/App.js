@@ -1,16 +1,17 @@
-import './App.scss';
-import Search from "./Components/Search/Search";
-import axios from 'axios';
-import React, {useState} from "react";
-import TransactionsTable from "./TransactionsTable/TransactionsTable";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import React from "react";
+import Transactions from "./Components/Transactions/TransactionsTable";
+import Header from "./Components/Header/Header";
+import Footer from "./Components/Footer/Footer";
 
 function App() {
 
 
     return (
         <div>
-            <h1>My App</h1>
-            {<TransactionsTable />}
+            <Header/>
+            <Transactions/>
+            <Footer/>
         </div>
     );
 }
