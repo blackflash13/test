@@ -9,8 +9,7 @@ const {getTransactionsFromBlocks} = require("./systems/transactions");
 
 app.use(express.json({limit: "50mb"}));
 app.use(cors({
-    // origin: process.env.HOST,
-    origin: "*",
+    origin: process.env.HOST,
 }));
 
 app.use(express.urlencoded({
