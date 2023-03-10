@@ -15,12 +15,13 @@ const Transactions = () => {
     const [msg, setMsg] = useState("");
     const [searchType, setSearchType] = useState('txHash');
 
+
     useEffect(() => {
         getTransactions(searchType, query);
     }, [page]);
 
-    const getTransactions = (searchType, query) => {
-        ApiService.sendRequestToAPI(page, limit, searchType, query).then((response) => {
+    const getTransactions = async (searchType, query) => {
+        await ApiService.sendRequestToAPI(page, limit, searchType, query).then((response) => {
             setTransactions(response.data.result);
             setPage(response.data.page);
             setPages(response.data.totalPage);
@@ -94,7 +95,10 @@ const Transactions = () => {
                 <div>
                     <div className="table-responsive">
                         {transactions.length > 0 ? (<TransactionsTable data={transactions}/>) : (
-                            <p>Loading data...</p>)}</div>
+                            <div className="notification is-info">
+                                Downloading data, wait a few ms)
+                            </div>
+                        )}</div>
 
                     <div className="mt-6">
 
@@ -121,6 +125,7 @@ const Transactions = () => {
                             pageRangeDisplayed={5}
                         />
                         </nav>
+
                     </div>
                 </div>
             }
