@@ -3,9 +3,9 @@ import {Container} from "react-bootstrap";
 
 function Header() {
     return (
-        <div className="header">
+        <header className="header">
             <Container> AppCo </Container>
-        </div>
+        </header>
     );
 }
 

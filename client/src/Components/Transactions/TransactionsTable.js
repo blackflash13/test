@@ -8,9 +8,8 @@ import RightArrow from "./PaginationArrow/RightArrow";
 const Transactions = () => {
     const [transactions, setTransactions] = useState([]);
     const [page, setPage] = useState(1);
-    const [limit, setLimit] = useState(20);
+    const [limit] = useState(20);
     const [pages, setPages] = useState(1);
-    const [rows, setRows] = useState(0);
     const [query, setQuery] = useState("");
     const [msg, setMsg] = useState("");
     const [searchType, setSearchType] = useState('txHash');
@@ -20,12 +19,11 @@ const Transactions = () => {
         getTransactions(searchType, query);
     }, [page]);
 
-    const getTransactions = async (searchType, query) => {
-        await ApiService.sendRequestToAPI(page, limit, searchType, query).then((response) => {
+    const getTransactions = (searchType, query) => {
+        ApiService.sendRequestToAPI(page, limit, searchType, query).then((response) => {
             setTransactions(response.data.result);
             setPage(response.data.page);
             setPages(response.data.totalPage);
-            setRows(response.data.totalRows);
             setMsg("");
         }).catch((e) => {
             setMsg(e.response.data.message)
@@ -101,12 +99,8 @@ const Transactions = () => {
                         )}</div>
 
                     <div className="mt-6">
-
-                        {/*<p> Total Rows: {rows} Page: {rows ? page : 1} of {pages}</p>*/}
-
                         <nav
                             className="pagination is-centered"
-                            // key={rows}
                             role="navigation"
                             aria-label="pagination"
                         ><ReactPaginate
@@ -125,7 +119,6 @@ const Transactions = () => {
                             pageRangeDisplayed={5}
                         />
                         </nav>
-
                     </div>
                 </div>
             }

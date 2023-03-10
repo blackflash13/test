@@ -3,7 +3,6 @@ const Page = require("../systems/page");
 const ApiError = require("../exceptions/api-error");
 
 class TransactionsService {
-
     async getTransactions(page, limit, type, value) {
         page = Math.max(0, page);
 

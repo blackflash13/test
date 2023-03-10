@@ -34,9 +34,13 @@ $footer-bg-color: #1C3B55;
   box-shadow: none;
 }
 
+@mixin shadow {
+  box-shadow: 0 0 5pt 0.5pt #D3D3D3;
+}
+
 @mixin custom_border {
-  border: 2px solid #F1F1F1;
-  border-radius: 10px;
+  border: 2px solid $table-even-row-bg;
+  border-radius: 5px;
 }
 
 *, select, {
@@ -63,7 +67,7 @@ select option {
 }
 
 .pagination-link.is-current {
-  background-color: $site-color;
+  @include bg-color;
 }
 
 .custom_select {
@@ -122,6 +126,15 @@ select option {
 
 .pagination-link.is-disabled {
   background-color: transparent;
+}
+
+.search_elements:focus-within {
+  border: 2px solid $site-color;
+  @include shadow;
+}
+
+.search_elements:hover {
+  @include shadow;
 }
 
 

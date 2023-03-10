@@ -11,7 +11,7 @@ class Transactions {
             const response = await axios.get(apiUrl + 'latest');
             const latestBlockNumber = parseInt(response.data.result.number, 16);
             const isExist = await TransactionsModel.findOne();
-            const blockNumbers = [];
+            let blockNumbers = [];
 
             if (!isExist) {
                 console.log("Will initialize 1000 latest block with transactions.")
