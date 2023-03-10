@@ -20,15 +20,13 @@ const TransactionsTable = ({data}) => {
             {data.map((tx) => (
                 <tr key={tx._id}>
                     <td>{tx.blockNumber}</td>
-                    <td><a
-                        href={`https://etherscan.io/tx/${tx.txHash}`}>{tx.txHash.substring(0, 13) + '...'}</a>
-                    </td>
-                    <td>{tx.from.substring(0, 13) + '...'}</td>
-                    <td>{tx.to.substring(0, 13) + '...'}</td>
+                    <td className="text-truncate"><a href={`https://etherscan.io/tx/${tx.txHash}`}>{tx.txHash}</a></td>
+                    <td className="text-truncate">{tx.from}</td>
+                    <td className="text-truncate">{tx.to}</td>
                     <td>{tx.confirmations}</td>
                     <td>{moment(tx.time).format("MMM-DD-YYYY")}</td>
-                    <td>{tx.value}</td>
-                    <td>{tx.fee}</td>
+                    <td className="text-truncate">{tx.value}</td>
+                    <td className="text-truncate">{tx.fee}</td>
                 </tr>
             ))}
             </tbody>

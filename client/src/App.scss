@@ -136,7 +136,12 @@ select option {
   @include shadow;
 }
 
+.table {
+  width: 100%
+}
 
-
-
-
+.text-truncate {
+  max-width: 10rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
