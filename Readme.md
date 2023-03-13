@@ -1,4 +1,4 @@
-### First of all. If you want to run this project in local machine. You must change config in client app. Because now the project is intended for deployment on heroku
+### First of all. If you want to run this project on your local machine. You need to change config in the client directory. Because now the project is intended for deployment on heroku
 
 ```
 go to file: client/src/config.js
