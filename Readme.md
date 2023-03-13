@@ -16,8 +16,8 @@ export const server_url =
 ## Create .env and fill in the  file
 
 ```
-HOST=YOUR_SERVER_LOCAL_HOST   #ex. http://localhost:YOUR_PORT
-PORT=YOUR_PORT
+HOST=YOUR_SERVER_LOCAL_HOST:YOUR_PORT     #ex. http://localhost:3001
+PORT=YOUR_PORT  #ex. 3001
 DB_URL=mongodb://127.0.0.1:27017
 etherKEY=YOUR_ETHERSCAN_KEY
 ```
