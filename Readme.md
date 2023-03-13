@@ -13,7 +13,7 @@ export const server_url =
     : 'http://localhost:3001';
 ```
 
-## Create .env and fill in the  file
+## Create .env in server dir and fill in the  file
 
 ```
 HOST=YOUR_SERVER_LOCAL_HOST:YOUR_PORT     #ex. http://localhost:3001
