@@ -111,7 +111,12 @@ class Transactions {
   writeLog = async mssg => {
     const time = new Date();
     const timeInStr = `--- ${time.getDate()}/${time.getMonth()}/${time.getFullYear()} ${time.getHours()}:${time.getMinutes()}\n\n`;
-    fs.appendFile('logs/tx.log', mssg + timeInStr, function (err) {
+    const dir = 'logs';
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir);
+    }
+
+    fs.appendFile(`${dir}/tx.log`, mssg + timeInStr, function (err) {
       if (err) return console.log(err);
     });
   };
