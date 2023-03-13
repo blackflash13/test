@@ -9,7 +9,7 @@ go to file: client/src/config.js
 ```
 export const server_url =
   process.env.NODE_ENV === 'production'
-    ? 'YOUR_SERVER_LOCAL_HOST'
+    ? 'YOUR_SERVER_LOCAL_HOST:YOUR_PORT'
     : 'http://localhost:3001';
 ```
 
